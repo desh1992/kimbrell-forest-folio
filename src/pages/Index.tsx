@@ -1,10 +1,8 @@
-
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { LayoutDashboard, LayoutList, LayoutGrid, Move } from "lucide-react";
 
-// Use uploaded person image for hero background
-const heroImage = "/lovable-uploads/4a6b2924-0dd6-4f9a-8ebb-a916c892531d.png";
+const heroBgImage = "/lovable-uploads/778b9de2-90bf-47ee-a74e-604a0bc88f75.png";
 
 const brandLogos = [
   { name: "Center for Food Safety", src: "/public/placeholder.svg", initials: "CFS" },
@@ -43,47 +41,41 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO SECTION */}
-      <section className="relative w-full flex flex-col md:flex-row min-h-[450px] max-h-[75vh] overflow-hidden bg-forest-900">
-        {/* Hero Image: takes full background; visible especially on left */}
-        <div className="absolute inset-0 w-full h-full">
-          <img
-            src={heroImage}
-            alt="Portrait hero background"
-            className="w-full h-full object-cover object-center"
-            style={{ filter: "brightness(0.93)" }}
-          />
-        </div>
-        {/* Gradient overlay: left side mostly transparent, right side more dark for text visibility */}
-        <div className="absolute inset-0 pointer-events-none"
+      <section className="relative flex items-center justify-center min-h-[470px] md:min-h-[520px] max-h-[85vh] w-full overflow-hidden bg-forest-900">
+        {/* Hero background image */}
+        <img
+          src={heroBgImage}
+          alt="Forest background"
+          className="absolute inset-0 w-full h-full object-cover object-center z-0"
+          style={{ filter: "brightness(0.8)" }}
+        />
+        {/* Translucent gradient overlay */}
+        <div
+          className="absolute inset-0 w-full h-full z-10 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to right, rgba(37,77,50,0.05) 0%, rgba(37,77,50,0.18) 38%, rgba(37,77,50,0.83) 82%, rgba(37,77,50,0.96) 100%)"
+              "linear-gradient(to top, rgba(37,77,50,0.75) 48%, rgba(210,220,200,0.17) 99%)"
           }}
         />
         {/* Content */}
         <motion.div
-          className="relative z-10 flex flex-col items-start justify-center gap-4 px-6 md:px-12 py-16 max-w-2xl md:max-w-lg w-full md:w-2/5 ml-auto glass"
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: [0.36, 1.39, 0.46, 0.81] }}
-          style={{
-            background:
-              "linear-gradient(to right, rgba(247,246,242,0.04) 0%, rgba(249,250,249,0.14) 47%, rgba(255,255,255,0.71) 95%, rgba(255,255,255,0.92) 100%)",
-            backdropFilter: "blur(6px)"
-          }}
+          className="relative z-20 flex flex-col items-center justify-center w-full max-w-3xl px-6 md:px-10 py-12 md:py-20 text-center"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: [0.37, 1, 0.22, 1] }}
         >
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-forest-900 mb-4 leading-tight">
+          <h1 className="font-serif text-5xl md:text-6xl font-bold text-softwhite mb-6 drop-shadow-lg">
             Andrew Kimbrell
           </h1>
-          <div className="font-sans text-lg md:text-2xl text-forest-800 font-medium mb-4">
+          <div className="font-sans text-2xl md:text-3xl text-softwhite/90 font-normal mb-7">
             Attorney, Author, Psychotherapist
           </div>
-          <p className="mt-2 mb-4 font-sans text-base md:text-lg text-forest-800/80 max-w-lg">
+          <p className="mb-8 mt-2 font-sans text-lg md:text-xl text-softwhite/85 max-w-2xl mx-auto">
             {"Here you'll find the collected works of Andrew Kimbrell, including his books, essays, and public talks on law, food, and the future of the planet."}
           </p>
           <a
             href="/bio"
-            className="px-6 py-2 rounded-full font-serif bg-forest-900 text-softwhite text-base font-semibold shadow hover:bg-forest-800 hover:scale-105 transition"
+            className="px-7 py-2 rounded-full font-serif bg-softwhite text-forest-900 text-lg font-semibold shadow-md hover:bg-forest-700 hover:text-softwhite border-2 border-softwhite hover:scale-105 transition"
           >
             About Andrew
           </a>
@@ -198,4 +190,3 @@ export default function Index() {
     </Layout>
   );
 }
-
