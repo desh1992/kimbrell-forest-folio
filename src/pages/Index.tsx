@@ -1,8 +1,10 @@
+
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { LayoutDashboard, LayoutList, LayoutGrid, Move } from "lucide-react";
 
-const heroBgImage = "/lovable-uploads/778b9de2-90bf-47ee-a74e-604a0bc88f75.png";
+// Use a picturesque dummy image for hero background (e.g. foggy mountain summit)
+const heroBgImage = "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80";
 
 const brandLogos = [
   { name: "Center for Food Safety", src: "/public/placeholder.svg", initials: "CFS" },
@@ -45,7 +47,7 @@ export default function Index() {
         {/* Hero background image */}
         <img
           src={heroBgImage}
-          alt="Forest background"
+          alt="Nature background"
           className="absolute inset-0 w-full h-full object-cover object-center z-0"
           style={{ filter: "brightness(0.8)" }}
         />
@@ -54,28 +56,33 @@ export default function Index() {
           className="absolute inset-0 w-full h-full z-10 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to top, rgba(37,77,50,0.75) 48%, rgba(210,220,200,0.17) 99%)"
+              "linear-gradient(to bottom, rgba(37,77,50,0.61) 5%, rgba(37,77,50,0.70) 30%, rgba(37,77,50,0.75) 70%, rgba(37,77,50,0.86) 100%)"
           }}
         />
-        {/* Content */}
+        {/* Glass-like, centered content */}
         <motion.div
           className="relative z-20 flex flex-col items-center justify-center w-full max-w-3xl px-6 md:px-10 py-12 md:py-20 text-center"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: [0.37, 1, 0.22, 1] }}
         >
-          <h1 className="font-serif text-5xl md:text-6xl font-bold text-softwhite mb-6 drop-shadow-lg">
+          {/* Subtle big shadowed text behind */}
+          <span className="font-serif text-[2.8rem] md:text-[4.5rem] font-bold text-softwhite/30 leading-none absolute -top-8 left-1/2 -translate-x-1/2 z-10 select-none pointer-events-none whitespace-nowrap"
+            style={{ textShadow: "0 1px 17px rgba(44,72,46,0.18)" }}>
+            Andrew Kimbrell
+          </span>
+          <h1 className="font-serif text-5xl md:text-6xl font-extrabold text-softwhite mb-6 drop-shadow-lg relative z-20">
             Andrew Kimbrell
           </h1>
-          <div className="font-sans text-2xl md:text-3xl text-softwhite/90 font-normal mb-7">
+          <div className="font-sans text-2xl md:text-3xl text-softwhite/90 font-normal mb-7 relative z-20">
             Attorney, Author, Psychotherapist
           </div>
-          <p className="mb-8 mt-2 font-sans text-lg md:text-xl text-softwhite/85 max-w-2xl mx-auto">
+          <p className="mb-8 mt-2 font-sans text-lg md:text-xl text-softwhite/85 max-w-2xl mx-auto relative z-20">
             {"Here you'll find the collected works of Andrew Kimbrell, including his books, essays, and public talks on law, food, and the future of the planet."}
           </p>
           <a
             href="/bio"
-            className="px-7 py-2 rounded-full font-serif bg-softwhite text-forest-900 text-lg font-semibold shadow-md hover:bg-forest-700 hover:text-softwhite border-2 border-softwhite hover:scale-105 transition"
+            className="px-7 py-2 rounded-full font-serif bg-softwhite text-forest-900 text-lg font-semibold shadow-md hover:bg-forest-700 hover:text-softwhite border-2 border-softwhite hover:scale-105 transition relative z-20"
           >
             About Andrew
           </a>
