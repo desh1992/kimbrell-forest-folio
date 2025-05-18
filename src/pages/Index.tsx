@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 
@@ -37,6 +36,39 @@ const features = [
     desc: "Strategic advisory to NGOs, government, and business on regulatory and scientific matters.",
     icon: "move"
   },
+];
+
+const brandLogos = [
+  {
+    name: "Center for Food Safety",
+    src: "/public/placeholder.svg",
+    initials: "CFS"
+  },
+  {
+    name: "Earth Justice",
+    src: "/public/placeholder.svg",
+    initials: "EJ"
+  },
+  {
+    name: "Sierra Club",
+    src: "/public/placeholder.svg",
+    initials: "SC"
+  },
+  {
+    name: "UNEP",
+    src: "/public/placeholder.svg",
+    initials: "UN"
+  },
+  {
+    name: "Food Ethics Council",
+    src: "/public/placeholder.svg",
+    initials: "FEC"
+  },
+  {
+    name: "WWF",
+    src: "/public/placeholder.svg",
+    initials: "WWF"
+  }
 ];
 
 export default function Index() {
@@ -98,8 +130,9 @@ export default function Index() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, delay: 0.14 }}>
           {brandLogos.map((logo, idx) => (
-            <div key={idx} className="w-32 h-10 flex items-center justify-center bg-softwhite rounded-lg shadow-sm opacity-60">
-              <img src={logo} alt="Brand logo" className="h-8 object-contain" />
+            <div key={idx} className="w-32 h-10 flex items-center justify-center bg-softwhite rounded-lg shadow-sm opacity-90">
+              {/* Prefer initials as logo, fallback to svg */}
+              <span className="font-serif text-lg text-forest-900">{logo.initials}</span>
             </div>
           ))}
         </motion.div>
