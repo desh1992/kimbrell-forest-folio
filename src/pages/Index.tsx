@@ -1,13 +1,11 @@
+
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { LayoutDashboard, LayoutList, LayoutGrid, Move } from "lucide-react";
 
-// Use a person/portrait for the hero.
-// Example: Unsplash image: woman sitting on bed using laptop
-const heroImage =
-  "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=facearea&w=1500&q=80";
+// Use uploaded person image for hero background
+const heroImage = "/lovable-uploads/4a6b2924-0dd6-4f9a-8ebb-a916c892531d.png";
 
-// Proper dummy brands with initials
 const brandLogos = [
   { name: "Center for Food Safety", src: "/public/placeholder.svg", initials: "CFS" },
   { name: "Earth Justice", src: "/public/placeholder.svg", initials: "EJ" },
@@ -45,45 +43,50 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO SECTION */}
-      <section className="relative w-full flex flex-col md:flex-row min-h-[450px] max-h-[75vh] bg-forest-900 overflow-hidden pt-4 md:pt-0">
-        {/* Hero: Text Content */}
-        <motion.div
-          className="relative z-10 flex flex-col items-start justify-center gap-4 px-6 md:px-12 py-16 max-w-2xl md:max-w-lg w-full md:w-1/2"
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: [0.36, 1.39, 0.46, 0.81] }}
-        >
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-            Andrew Kimbrell
-          </h1>
-          <div className="font-sans text-lg md:text-2xl text-beige/90 font-medium mb-4">
-            Attorney, Author, Psychotherapist
-          </div>
-          <p className="mt-2 mb-4 font-sans text-base md:text-lg text-beige/80 max-w-lg">
-            "Here you&apos;ll find the collected works of Andrew Kimbrell, including his books, essays, and public talks on law, food, and the future of the planet."
-          </p>
-          <a
-            href="/bio"
-            className="px-6 py-2 rounded-full font-serif bg-softwhite text-forest-900 text-base font-semibold shadow hover:bg-beige hover:scale-105 transition"
-          >
-            About Andrew
-          </a>
-        </motion.div>
-        {/* Hero: Image - occupies right half on desktop, visible underneath on mobile */}
-        <motion.div
-          className="relative flex-1 min-h-[340px] max-h-[75vh] w-full md:w-1/2 overflow-hidden"
-          initial={{ opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, delay: 0.15 }}
-        >
+      <section className="relative w-full flex flex-col md:flex-row min-h-[450px] max-h-[75vh] overflow-hidden bg-forest-900">
+        {/* Hero Image: takes full background; visible especially on left */}
+        <div className="absolute inset-0 w-full h-full">
           <img
             src={heroImage}
             alt="Portrait hero background"
-            className="absolute inset-0 w-full h-full object-cover object-center md:object-right rounded-none opacity-80 md:opacity-100"
-            style={{ filter: "brightness(0.92) blur(0.5px)" }}
+            className="w-full h-full object-cover object-center"
+            style={{ filter: "brightness(0.93)" }}
           />
-          {/* Overlay for readability on small screens */}
-          <div className="absolute inset-0 bg-gradient-to-l from-forest-900/80 via-forest-800/40 to-transparent pointer-events-none md:hidden" />
+        </div>
+        {/* Gradient overlay: left side mostly transparent, right side more dark for text visibility */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(37,77,50,0.05) 0%, rgba(37,77,50,0.18) 38%, rgba(37,77,50,0.83) 82%, rgba(37,77,50,0.96) 100%)"
+          }}
+        />
+        {/* Content */}
+        <motion.div
+          className="relative z-10 flex flex-col items-start justify-center gap-4 px-6 md:px-12 py-16 max-w-2xl md:max-w-lg w-full md:w-2/5 ml-auto glass"
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.36, 1.39, 0.46, 0.81] }}
+          style={{
+            background:
+              "linear-gradient(to right, rgba(247,246,242,0.04) 0%, rgba(249,250,249,0.14) 47%, rgba(255,255,255,0.71) 95%, rgba(255,255,255,0.92) 100%)",
+            backdropFilter: "blur(6px)"
+          }}
+        >
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-forest-900 mb-4 leading-tight">
+            Andrew Kimbrell
+          </h1>
+          <div className="font-sans text-lg md:text-2xl text-forest-800 font-medium mb-4">
+            Attorney, Author, Psychotherapist
+          </div>
+          <p className="mt-2 mb-4 font-sans text-base md:text-lg text-forest-800/80 max-w-lg">
+            {"Here you'll find the collected works of Andrew Kimbrell, including his books, essays, and public talks on law, food, and the future of the planet."}
+          </p>
+          <a
+            href="/bio"
+            className="px-6 py-2 rounded-full font-serif bg-forest-900 text-softwhite text-base font-semibold shadow hover:bg-forest-800 hover:scale-105 transition"
+          >
+            About Andrew
+          </a>
         </motion.div>
       </section>
 
@@ -195,3 +198,4 @@ export default function Index() {
     </Layout>
   );
 }
+
