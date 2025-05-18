@@ -1,64 +1,41 @@
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
+import { LayoutDashboard, LayoutList, LayoutGrid, Move } from "lucide-react";
 
 const heroImage =
   "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=facearea&w=1500&q=80";
 
 // Proper dummy brands with initials
 const brandLogos = [
-  {
-    name: "Center for Food Safety",
-    src: "/public/placeholder.svg",
-    initials: "CFS"
-  },
-  {
-    name: "Earth Justice",
-    src: "/public/placeholder.svg",
-    initials: "EJ"
-  },
-  {
-    name: "Sierra Club",
-    src: "/public/placeholder.svg",
-    initials: "SC"
-  },
-  {
-    name: "UNEP",
-    src: "/public/placeholder.svg",
-    initials: "UN"
-  },
-  {
-    name: "Food Ethics Council",
-    src: "/public/placeholder.svg",
-    initials: "FEC"
-  },
-  {
-    name: "WWF",
-    src: "/public/placeholder.svg",
-    initials: "WWF"
-  }
+  { name: "Center for Food Safety", src: "/public/placeholder.svg", initials: "CFS" },
+  { name: "Earth Justice", src: "/public/placeholder.svg", initials: "EJ" },
+  { name: "Sierra Club", src: "/public/placeholder.svg", initials: "SC" },
+  { name: "UNEP", src: "/public/placeholder.svg", initials: "UN" },
+  { name: "Food Ethics Council", src: "/public/placeholder.svg", initials: "FEC" },
+  { name: "WWF", src: "/public/placeholder.svg", initials: "WWF" }
 ];
 
 const features = [
   {
     title: "Litigation",
     desc: "Expertise in environmental and food law; advocacy for public interest in landmark federal cases.",
-    icon: "layout-dashboard", // icon placeholder
+    icon: LayoutDashboard,
     primary: true
   },
   {
     title: "Public Speaking",
     desc: "Inspiring audiences on law, food, future, and ethical issues at events globally.",
-    icon: "layout-list"
+    icon: LayoutList,
   },
   {
     title: "Books & Writing",
     desc: "Renowned author on bioethics, agriculture, and conservation topics.",
-    icon: "layout-grid"
+    icon: LayoutGrid,
   },
   {
     title: "Consulting",
     desc: "Strategic advisory to NGOs, government, and business on regulatory and scientific matters.",
-    icon: "move"
+    icon: Move,
   },
 ];
 
@@ -158,21 +135,23 @@ export default function Index() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 w-full max-w-5xl">
           {features.map((f, idx) => (
             <motion.div
-              key={idx}
-              className={`rounded-2xl shadow bg-white/90 border border-forest-900/10 px-8 py-10 flex flex-col items-start gap-3 hover:scale-[1.035] hover:shadow-lg transition-all ${
-                f.primary ? 'bg-forest-900 text-softwhite shadow-lg' : 'text-forest-900'
+              key={f.title}
+              className={`rounded-2xl shadow bg-white border border-forest-900/10 px-8 py-10 flex flex-col items-start gap-3 hover:scale-[1.035] hover:shadow-lg transition-all ${
+                f.primary ? 'bg-white text-forest-900' : 'text-forest-900'
               }`}
+              style={{
+                boxShadow: '0 2px 18px 0 rgba(151, 169, 161, 0.09)'
+              }}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.29 }}
               transition={{ duration: 0.5 + idx * 0.07, delay: 0.1 + idx * 0.09 }}
             >
-              <div className="mb-4">
-                {/* Placeholder for icon: replace with lucide icons if desired */}
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${f.primary ? 'bg-white/10' : 'bg-forest-900/5'}`}>
-                  <span className="text-2xl">{/* You could use lucide icons here */}</span>
+              <div className="mb-4 w-full">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-4 bg-forest-900/5`}>
+                  {f.icon && <f.icon size={26} className="text-forest-900/80" aria-label={`${f.title} icon`} />}
                 </div>
-                <span className="font-serif text-xl font-semibold">{f.title}</span>
+                <span className="font-serif text-xl font-bold">{f.title}</span>
               </div>
               <div className="font-sans text-base opacity-85">{f.desc}</div>
             </motion.div>
