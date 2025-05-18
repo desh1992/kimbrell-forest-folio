@@ -2,8 +2,10 @@ import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { LayoutDashboard, LayoutList, LayoutGrid, Move } from "lucide-react";
 
+// Use a person/portrait for the hero.
+// Example: Unsplash image: woman sitting on bed using laptop
 const heroImage =
-  "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=facearea&w=1500&q=80";
+  "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=facearea&w=1500&q=80";
 
 // Proper dummy brands with initials
 const brandLogos = [
@@ -43,12 +45,12 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO SECTION */}
-      <section className="relative w-full flex flex-col items-center justify-between min-h-[420px] max-h-[80vh] bg-forest-900 overflow-hidden pt-4 md:pt-0">
+      <section className="relative w-full flex flex-col md:flex-row min-h-[450px] max-h-[75vh] bg-forest-900 overflow-hidden pt-4 md:pt-0">
         {/* Hero: Text Content */}
         <motion.div
-          className="relative z-10 flex flex-col items-start justify-center gap-4 px-6 md:px-12 py-16 max-w-2xl"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10 flex flex-col items-start justify-center gap-4 px-6 md:px-12 py-16 max-w-2xl md:max-w-lg w-full md:w-1/2"
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: [0.36, 1.39, 0.46, 0.81] }}
         >
           <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
@@ -67,18 +69,22 @@ export default function Index() {
             About Andrew
           </a>
         </motion.div>
-        {/* Hero: Image */}
-        <motion.img
-          src={heroImage}
-          alt="Nature hero background"
-          className="absolute top-0 right-0 w-full h-full object-cover opacity-50 pointer-events-none select-none"
-          style={{ filter: "brightness(0.6) blur(1px)" }}
-          initial={{ scale: 1.04, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+        {/* Hero: Image - occupies right half on desktop, visible underneath on mobile */}
+        <motion.div
+          className="relative flex-1 min-h-[340px] max-h-[75vh] w-full md:w-1/2 overflow-hidden"
+          initial={{ opacity: 0, scale: 1.03 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, delay: 0.15 }}
-        />
-        {/* Subtle overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-900/90 via-forest-800/40 to-transparent pointer-events-none" />
+        >
+          <img
+            src={heroImage}
+            alt="Portrait hero background"
+            className="absolute inset-0 w-full h-full object-cover object-center md:object-right rounded-none opacity-80 md:opacity-100"
+            style={{ filter: "brightness(0.92) blur(0.5px)" }}
+          />
+          {/* Overlay for readability on small screens */}
+          <div className="absolute inset-0 bg-gradient-to-l from-forest-900/80 via-forest-800/40 to-transparent pointer-events-none md:hidden" />
+        </motion.div>
       </section>
 
       {/* TRUSTED BY / BRANDS SECTION */}
