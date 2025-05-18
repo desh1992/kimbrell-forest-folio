@@ -4,40 +4,7 @@ import { motion } from "framer-motion";
 const heroImage =
   "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=facearea&w=1500&q=80";
 
-// Dummy brands — ideally these would be replaced with real assets!
-const brandLogos = [
-  "/public/placeholder.svg",
-  "/public/placeholder.svg",
-  "/public/placeholder.svg",
-  "/public/placeholder.svg",
-  "/public/placeholder.svg",
-  "/public/placeholder.svg"
-];
-
-const features = [
-  {
-    title: "Litigation",
-    desc: "Expertise in environmental and food law; advocacy for public interest in landmark federal cases.",
-    icon: "layout-dashboard", // icon placeholder
-    primary: true
-  },
-  {
-    title: "Public Speaking",
-    desc: "Inspiring audiences on law, food, future, and ethical issues at events globally.",
-    icon: "layout-list"
-  },
-  {
-    title: "Books & Writing",
-    desc: "Renowned author on bioethics, agriculture, and conservation topics.",
-    icon: "layout-grid"
-  },
-  {
-    title: "Consulting",
-    desc: "Strategic advisory to NGOs, government, and business on regulatory and scientific matters.",
-    icon: "move"
-  },
-];
-
+// Proper dummy brands with initials
 const brandLogos = [
   {
     name: "Center for Food Safety",
@@ -69,6 +36,30 @@ const brandLogos = [
     src: "/public/placeholder.svg",
     initials: "WWF"
   }
+];
+
+const features = [
+  {
+    title: "Litigation",
+    desc: "Expertise in environmental and food law; advocacy for public interest in landmark federal cases.",
+    icon: "layout-dashboard", // icon placeholder
+    primary: true
+  },
+  {
+    title: "Public Speaking",
+    desc: "Inspiring audiences on law, food, future, and ethical issues at events globally.",
+    icon: "layout-list"
+  },
+  {
+    title: "Books & Writing",
+    desc: "Renowned author on bioethics, agriculture, and conservation topics.",
+    icon: "layout-grid"
+  },
+  {
+    title: "Consulting",
+    desc: "Strategic advisory to NGOs, government, and business on regulatory and scientific matters.",
+    icon: "move"
+  },
 ];
 
 export default function Index() {
@@ -130,9 +121,12 @@ export default function Index() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, delay: 0.14 }}>
           {brandLogos.map((logo, idx) => (
-            <div key={idx} className="w-32 h-10 flex items-center justify-center bg-softwhite rounded-lg shadow-sm opacity-90">
+            <div key={logo.name} className="w-32 h-10 flex items-center justify-center bg-softwhite rounded-lg shadow-sm opacity-90">
               {/* Prefer initials as logo, fallback to svg */}
-              <span className="font-serif text-lg text-forest-900">{logo.initials}</span>
+              {logo.initials
+                ? <span className="font-serif text-lg text-forest-900">{logo.initials}</span>
+                : <img src={logo.src} alt={logo.name} className="w-7 h-7 object-contain" />
+              }
             </div>
           ))}
         </motion.div>
