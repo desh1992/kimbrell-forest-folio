@@ -67,15 +67,15 @@ export default function Index() {
           transition={{ duration: 0.75, ease: [0.37, 1, 0.22, 1] }}
         >
           {/* Subtle big shadowed text behind */}
-          <span className="font-serif text-[2.8rem] md:text-[4.5rem] font-bold text-softwhite/30 leading-none absolute -top-8 left-1/2 -translate-x-1/2 z-10 select-none pointer-events-none whitespace-nowrap"
+          {/* <span className="font-serif text-[2.8rem] md:text-[4.5rem] font-bold text-softwhite/30 leading-none absolute -top-8 left-1/2 -translate-x-1/2 z-10 select-none pointer-events-none whitespace-nowrap"
             style={{ textShadow: "0 1px 17px rgba(44,72,46,0.18)" }}>
             Andrew Kimbrell
-          </span>
+          </span> */}
           <h1 className="font-serif text-5xl md:text-6xl font-extrabold text-softwhite mb-6 drop-shadow-lg relative z-20">
             Andrew Kimbrell
           </h1>
           <div className="font-sans text-2xl md:text-3xl text-softwhite/90 font-normal mb-7 relative z-20">
-            Attorney, Author, Psychotherapist
+            Attorney, Author, NGO leader, Psychologist
           </div>
           <p className="mb-8 mt-2 font-sans text-lg md:text-xl text-softwhite/85 max-w-2xl mx-auto relative z-20">
             {"Here you'll find the collected works of Andrew Kimbrell, including his books, essays, and public talks on law, food, and the future of the planet."}
