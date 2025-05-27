@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Speaking", url: "/speaking" },
   { label: "Books", url: "/books" },
   { label: "Articles", url: "/articles" },
+  { label: "Films", url: "/films" },
   { label: "Contact", url: "/contact" },
 ];
 
@@ -21,7 +22,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-beige border-t border-forest-900/10 mt-10 text-forest-900">
+    <footer className="w-full bg-beige border-t-4 border-forest-900 text-forest-900">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 px-4 py-8">
         {/* Left: Logo and Copyright */}
         <div className="flex flex-col items-center md:items-start gap-3">
@@ -33,7 +34,12 @@ export default function Footer() {
           {navLinks.map(link => (
             <NavLink
               to={link.url}
-              className="text-base font-medium text-forest-900 hover:text-forest-800 transition"
+              end={link.url === "/"}
+              className={({ isActive }) => 
+                `relative text-base font-medium transition-all duration-300 hover:text-forest-800 hover:after:w-full after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-forest-800 after:transition-all after:duration-300 ${
+                  isActive ? 'text-forest-800 font-semibold after:w-full' : 'text-forest-900'
+                }`
+              }
               key={link.url}
             >
               {link.label}

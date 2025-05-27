@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Speaking", url: "/speaking" },
   { label: "Books", url: "/books" },
   { label: "Articles", url: "/articles" },
+  { label: "Films", url: "/films" },
   { label: "Contact", url: "/contact" },
 ];
 
