@@ -90,8 +90,8 @@ export default function Index() {
             </div>
             
             {/* Decorative Corner Accents */}
-            <div className="absolute -top-2 -left-2 w-6 h-6 bg-gradient-to-br from-softwhite to-beige rounded-full shadow-lg opacity-80"></div>
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-forest-100 to-forest-200 rounded-full shadow-lg opacity-60"></div>
+            {/* <div className="absolute -top-2 -left-2 w-6 h-6 bg-gradient-to-br from-softwhite to-beige rounded-full shadow-lg opacity-80"></div>
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-forest-100 to-forest-200 rounded-full shadow-lg opacity-60"></div> */}
           </div>
         </motion.div>
 
@@ -151,21 +151,27 @@ export default function Index() {
       </section>
 
       {/* CONTACT INFORMATION SECTION */}
-      <section className="w-full flex flex-col md:flex-row items-center justify-center py-12 bg-beige border-b border-forest-700/5 relative">
+      <section className="w-full flex flex-col md:flex-row items-center justify-center py-20 bg-beige border-b border-forest-700/5 relative">
         <motion.div
-          className="text-center max-w-2xl mx-auto px-6 flex-1"
+          className="text-center max-w-4xl mx-auto px-6 flex-1"
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.55, delay: 0.09 }}>
-          <p className="text-lg md:text-xl font-serif text-forest-700 mb-2">
-            For public speaking or consulting please use the contact form or email:
+          <h2 className="text-2xl md:text-3xl font-serif text-forest-900 font-semibold mb-6">
+            Get in Touch with Andrew
+          </h2>
+          <p className="text-lg md:text-xl font-serif text-forest-700 mb-4 leading-relaxed">
+            For public speaking, consulting or any other media inquiries please use the contact form or reach out directly via email: 
           </p>
+          {/* <p className="text-lg md:text-xl font-serif text-forest-700 mb-6">
+            Please use the contact form or reach out directly via email:
+          </p> */}
           <a 
             href="mailto:ackimbrell@gmail.com" 
-            className="text-lg md:text-xl font-serif text-forest-900 font-semibold hover:text-forest-600 transition-colors underline"
+            className="text-lg md:text-2xl font-serif text-forest-900  hover:text-forest-600 transition-colors underline"
           >
-            ackimbrell@gmail.com
+            info@kimbrell.com
           </a>
         </motion.div>
         
