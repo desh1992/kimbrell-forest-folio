@@ -1,10 +1,11 @@
-
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
+import { emailConfig, EmailTemplateParams } from '@/config/email';
 
 type FormData = {
   name: string;
@@ -14,13 +15,51 @@ type FormData = {
 };
 
 export default function Contact() {
-  const { register, handleSubmit, formState: { errors, isSubmitting, isSubmitSuccessful } } = useForm<FormData>();
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormData>();
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  function onSubmit(data: FormData) {
-    // Simulate success
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+  async function onSubmit(data: FormData) {
+    try {
+      setSubmitError(null);
+      
+      // Debug: Log the configuration
+      console.log('EmailJS Config:', {
+        serviceId: emailConfig.serviceId,
+        templateId: emailConfig.templateId,
+        publicKey: emailConfig.publicKey
+      });
+      
+      // Prepare template parameters
+      const templateParams: EmailTemplateParams = {
+        from_name: data.name,
+        from_email: data.email,
+        message: data.message,
+        request_type: data.requestType || 'General',
+        to_email: emailConfig.toEmail,
+      };
+
+      console.log('Template Params:', templateParams);
+
+      // Send email using EmailJS
+      await emailjs.send(
+        emailConfig.serviceId, 
+        emailConfig.templateId, 
+        templateParams, 
+        emailConfig.publicKey
+      );
+      
+      // Show success message
+      setSubmitted(true);
+      reset(); // Clear the form
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000);
+      
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      setSubmitError('Failed to send message. Please try again or contact us directly at info@kimbrell.com');
+    }
   }
 
   return (
@@ -40,7 +79,7 @@ export default function Contact() {
           </p>
           <div className="inline-flex items-center gap-2 bg-softwhite/10 backdrop-blur-sm rounded-full px-6 py-3 border border-softwhite/20">
             <svg className="w-5 h-5 text-softwhite/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z" />
             </svg>
             <a 
               href="mailto:info@kimbrell.com" 
@@ -72,35 +111,6 @@ export default function Contact() {
               />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-forest-900/20 to-transparent"></div>
             </div>
-            
-            {/* Contact Information */}
-            {/* <motion.div
-              className="mt-8 bg-beige rounded-2xl p-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <h3 className="text-xl font-serif text-forest-900 font-semibold mb-4">
-                Get in Touch
-              </h3>
-              <div className="space-y-3">
-                <p className="text-forest-700">
-                  <span className="font-medium">Email:</span>{" "}
-                  <a 
-                    href="mailto:info@kimbrell.com" 
-                    className="text-forest-900 hover:underline"
-                  >
-                    info@kimbrell.com
-                  </a>
-                </p>
-                <p className="text-forest-700">
-                  <span className="font-medium">Speaking Engagements:</span> Available worldwide
-                </p>
-                <p className="text-forest-700">
-                  <span className="font-medium">Topics:</span> Environmental law, food safety, biotechnology ethics, sustainable agriculture
-                </p>
-              </div>
-            </motion.div> */}
           </motion.div>
 
           {/* Contact Form */}
@@ -145,6 +155,8 @@ export default function Contact() {
               <option value="">General</option>
               <option value="media">Media Inquiry</option>
               <option value="speaking">Speaking Request</option>
+              <option value="consulting">Consulting</option>
+              <option value="interview">Interview Request</option>
               <option value="other">Other</option>
             </select>
           </div>
@@ -152,25 +164,64 @@ export default function Contact() {
             <label className="font-serif block text-base mb-2 text-forest-900" htmlFor="message">Message</label>
             <Textarea
               id="message"
-              placeholder="How can we help you?"
+              placeholder="Please provide details about your inquiry..."
               rows={8}
               className="flex-1 min-h-[200px]"
               {...register("message", { required: "Message is required" })}
             />
             {errors.message && <span className="text-red-500 text-sm">{errors.message.message}</span>}
           </div>
-          <button type="submit" disabled={isSubmitting} className="px-8 py-2 mt-2 rounded-full bg-forest-900 font-serif text-white shadow hover:scale-105 transition relative">
-            {isSubmitting ? "Sending..." : "Send Message"}
+          <button 
+            type="submit" 
+            disabled={isSubmitting} 
+            className="px-8 py-3 mt-2 rounded-full bg-forest-900 font-serif text-white shadow hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          >
+            {isSubmitting ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Sending...
+              </span>
+            ) : "Send Message"}
           </button>
+          
+          {/* Success Message */}
           {submitted && (
             <motion.div
-              className="text-green-700 mt-2 text-center font-medium"
+              className="bg-green-50 border border-green-200 rounded-lg p-4 text-green-800 text-center"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.45 }}
             >
-              Thank you! Your message has been received.
+              <div className="flex items-center justify-center gap-2">
+                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="font-medium">Message sent successfully!</span>
+              </div>
+              <p className="text-sm mt-1">Thank you for reaching out. We'll get back to you soon.</p>
+            </motion.div>
+          )}
+          
+          {/* Error Message */}
+          {submitError && (
+            <motion.div
+              className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-800 text-center"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.45 }}
+            >
+              <div className="flex items-center justify-center gap-2">
+                <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="font-medium">Failed to send message</span>
+              </div>
+              <p className="text-sm mt-1">{submitError}</p>
             </motion.div>
           )}
         </motion.form>
