@@ -1,23 +1,19 @@
 
-import { Mail, Phone, Instagram, Linkedin, Twitter, Facebook } from "lucide-react";
+import { Mail } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const navLinks = [
   { label: "Home", url: "/" },
   { label: "Bio", url: "/bio" },
-  { label: "Speaking", url: "/speaking" },
+  { label: "Media", url: "/speaking" },
   { label: "Books", url: "/books" },
   { label: "Articles", url: "/articles" },
   { label: "Films", url: "/films" },
   { label: "Contact", url: "/contact" },
 ];
 
-const socialLinks = [
-  { name: 'Email', icon: Mail, url: 'mailto:info@kimbrell.org' },
-  { name: 'Instagram', icon: Instagram, url: 'https://instagram.com' },
-  { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com' },
-  { name: 'Twitter', icon: Twitter, url: 'https://twitter.com' },
-  { name: 'Facebook', icon: Facebook, url: 'https://facebook.com' }
+const contactInfo = [
+  { name: 'Email', icon: Mail, url: 'mailto:kimbrell.eai@gmail.com' }
 ];
 
 export default function Footer() {
@@ -46,29 +42,11 @@ export default function Footer() {
             </NavLink>
           ))}
         </nav>
-        {/* Right: Contact and Socials */}
+        {/* Right: Contact */}
         <div className="flex flex-col gap-3 items-center md:items-end">
           <div className="flex gap-3 items-center text-sm">
-            <Phone size={18} className="inline mr-1 text-forest-700" />
-            <span>+1 (555) 123-4567</span>
-          </div>
-          <div className="flex gap-3 items-center text-sm">
             <Mail size={18} className="inline mr-1 text-forest-700" />
-            <span>info@kimbrell.org</span>
-          </div>
-          <div className="flex gap-2 mt-2">
-            {socialLinks.map(s => (
-              <a
-                key={s.name}
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.name}
-                className="hover:bg-forest-900/10 rounded-full p-1 transition"
-              >
-                <s.icon size={22} className="text-forest-800" />
-              </a>
-            ))}
+            <span>kimbrell.eai@gmail.com</span>
           </div>
         </div>
       </div>

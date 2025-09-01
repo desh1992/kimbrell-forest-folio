@@ -11,10 +11,16 @@ const featuredVideos = [
     thumbnail: `https://img.youtube.com/vi/HQ7SkZwHO24/hqdefault.jpg`
   },
   {
-    title: "Cold Evil, 10 Billion Animals Used Each Year For Food",
-    desc: "Ethical examination of industrial agriculture",
-    videoId: "ZrlzSMQW-aw",
-    thumbnail: `https://img.youtube.com/vi/ZrlzSMQW-aw/hqdefault.jpg`
+    title: "CNS - Andrew Kimbrell on the 8 Essentials of Agriculture",
+    desc: "Essential discussion on sustainable agriculture and food systems",
+    videoId: "_NTazbdcqz0",
+    thumbnail: `https://img.youtube.com/vi/_NTazbdcqz0/hqdefault.jpg`
+  },
+  {
+    title: "The Future of Food: From Fatal Harvest To Organic And Beyond",
+    desc: "Author discussion on sustainable agriculture",
+    videoId: "c0tnoIuhIpE",
+    thumbnail: `https://img.youtube.com/vi/c0tnoIuhIpE/hqdefault.jpg`
   },
   {
     title: "Andrew Kimbrell Kauai Seminar",
@@ -38,12 +44,7 @@ const videoCollection = [
     videoId: "mntCuwgL67w",
     category: "Seminars"
   },
-  {
-    title: "The Future of Food: From Fatal Harvest To Organic And Beyond",
-    desc: "Author discussion on sustainable agriculture",
-    videoId: "c0tnoIuhIpE",
-    category: "Food Systems"
-  },
+
   {
     title: "Your Right to Know | Talks at Google",
     desc: "Consumer rights and food transparency",
@@ -330,7 +331,7 @@ export default function Speaking() {
           <h2 className="text-2xl md:text-3xl font-serif text-forest-900 font-semibold mb-8 text-center">
             Featured Presentations
           </h2>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {featuredVideos.map((video, idx) => (
               <motion.div
                 key={idx}

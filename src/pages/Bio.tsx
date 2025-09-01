@@ -116,6 +116,23 @@ export default function Bio() {
           Alongside CFS, he has also founded: The Greenhouse Crisis Foundation, International Center For Technology Assessment, Organic Consumer Association, Foundation Earth, and most recently, Earth Advocacy Institute, as well as serving as the president of the Board of Humane Farm Animal Care.
         </motion.div>
         
+        {/* Third image - Left side with text wrap */}
+        <motion.div
+          className="float-left mr-6 mb-4 w-72 md:w-96"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+        >
+          <img
+            src="/images/other/Andrew with Father Thomas Berry.jpeg"
+            alt="Andrew with Father Thomas Berry"
+            className="w-full h-auto rounded-xl shadow-lg object-cover"
+          />
+          <p className="text-center text-sm text-forest-700 mt-2 font-medium">
+            Andrew with Father Thomas Berry
+          </p>
+        </motion.div>
+        
         <motion.div
           className="mb-6 text-base md:text-lg font-sans text-forest-800 leading-relaxed"
           initial={{ opacity: 0, y: 18 }}
@@ -160,6 +177,23 @@ export default function Bio() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.56 }}>
           In addition to his legal and environmental work, Kimbrell is a prolific writer and thought leader. He has written several influential books that have helped educate and inspire a generation of food activists and ethical consumers, including <em>Your Right to Know: Genetic Engineering and the Secret Changes in Your Food</em> and <em>The Fatal Harvest Reader: The Tragedy of Industrial Agriculture</em>. His writings delve into the ethical, legal, and environmental implications of modern agricultural practices, inspiring readers to engage critically with the food systems that sustain them.
+        </motion.div>
+        
+        {/* Fourth image - Left side with text wrap */}
+        <motion.div
+          className="float-left mr-6 mb-4 w-72 md:w-96"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <img
+            src="/images/other/Andrew with Vandana Shiva.jpeg"
+            alt="Andrew with Vandana Shiva"
+            className="w-full h-auto rounded-xl shadow-lg object-cover"
+          />
+          <p className="text-center text-sm text-forest-700 mt-2 font-medium">
+            Andrew with Vandana Shiva
+          </p>
         </motion.div>
         
         <motion.div

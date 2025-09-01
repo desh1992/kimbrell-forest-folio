@@ -58,7 +58,7 @@ export default function Contact() {
       
     } catch (error) {
       console.error('Failed to send email:', error);
-      setSubmitError('Failed to send message. Please try again or contact us directly at info@kimbrell.com');
+      setSubmitError('Failed to send message. Please try again or contact us directly at kimbrell.eai@gmail.com');
     }
   }
 
@@ -82,10 +82,10 @@ export default function Contact() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z" />
             </svg>
             <a 
-              href="mailto:info@kimbrell.com" 
+              href="mailto:kimbrell.eai@gmail.com" 
               className="text-lg text-softwhite font-sans hover:text-beige transition-colors"
             >
-              info@kimbrell.com
+              kimbrell.eai@gmail.com
             </a>
           </div>
         </motion.div>

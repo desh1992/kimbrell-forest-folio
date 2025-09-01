@@ -168,10 +168,10 @@ export default function Index() {
             Please use the contact form or reach out directly via email:
           </p> */}
           <a 
-            href="mailto:ackimbrell@gmail.com" 
+            href="mailto:kimbrell.eai@gmail.com" 
             className="text-lg md:text-2xl font-serif text-forest-900  hover:text-forest-600 transition-colors underline"
           >
-            info@kimbrell.com
+            kimbrell.eai@gmail.com
           </a>
         </motion.div>
         
